@@ -16,9 +16,9 @@ const render = Render.create({
     element:document.body,
     options : {
         wireframes: false,
-        background: '#F7F4C8',
+        background: '#4B2E5D',
         width:620,
-        height:850,
+        height:1850,
     }
 });
 
@@ -26,28 +26,28 @@ const render = Render.create({
 const world = engine.world;
 
 // 벽 생성
-const leftWall = Boides.rectangle(15, 395, 30, 790, {
+const leftWall = Boides.rectangle(15, 925, 30, 1850, {
                                     // x좌표, y좌표, width, height
     isStatic: true,
-    render : {fillStyle: '#E6B143'}
+    render : {fillStyle: '#7D1A1F'}
 })
 
-const rightWall = Boides.rectangle(605, 395, 30, 790, {
+const rightWall = Boides.rectangle(605, 925, 30, 1850, {
     // x좌표, y좌표, width, height
 isStatic: true,
-render : {fillStyle: '#E6B143'}
+render : {fillStyle: '#7D1A1F'}
 })
 
-const ground = Boides.rectangle(310, 820, 620, 60, {
+const ground = Boides.rectangle(310, 1820, 620, 60, {
     // x좌표, y좌표, width, height
 isStatic: true,
-render : {fillStyle: '#E6B143'}
+render : {fillStyle: '#7D1A1F'}
 })
 
 const topLine = Boides.rectangle(310, 150, 620, 2, {
     // x좌표, y좌표, width, height
 isStatic: true,
-render : {fillStyle: '#E6B143'}
+render : {fillStyle: '#7D1A1F'}
 })
 
 // 생성한 벽을 월드에 배치
