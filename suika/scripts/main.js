@@ -1,5 +1,8 @@
-//모듈 불러오기
+//이미지 및 반지름 추가
+import { FRUITS } from "./fruits.js";
 
+
+//모듈 불러오기
 var Engine = Matter.Engine,
     Render = Matter.Render,
     Runner = Matter.Runner,
@@ -47,6 +50,8 @@ render : {fillStyle: '#7D1A1F'}
 const topLine = Boides.rectangle(310, 150, 620, 2, {
     // x좌표, y좌표, width, height
 isStatic: true,
+//충돌 감지 기능
+isSensor : true,
 render : {fillStyle: '#7D1A1F'}
 })
 
@@ -56,3 +61,38 @@ World.add(world, [leftWall, rightWall, ground, topLine]);
 // 실행
 Render.run(render);
 Runner.run(engine);
+
+//현재 과일 값을 저장하는 변수
+let currentBody = null;
+let currentFruit = null;
+
+//과일을 추가하는 함수
+function addFruit()
+{
+    //난수 생성
+    const index = Math.floor(Math.random() * 10)
+    const fruits = FRUITS[index];
+
+
+    const body = Boides.circle(300, 50, fruits.radius,
+        {
+            //해당 과일의 번호값을 저장
+            index : index, 
+            //처음 시작할때 엄춰있음
+            isSleeping : true,
+            render: {
+                sprite: {texture: `${fruits.name}.png` }
+            },
+            restitution : 0.4,
+        });
+
+        //현재 과일값 저장
+        currentBody = body;
+        currentBody = fruits;
+
+        //월드에 배치
+        World.add(world, body);
+}
+
+//함수 호출
+addFruit();
