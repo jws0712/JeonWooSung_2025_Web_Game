@@ -69,6 +69,9 @@ Runner.run(engine);
 let currentBody = null;
 let currentFruit = null;
 
+//키 조작을 제어하는 변수
+let disableAction = false;
+
 //과일을 추가하는 함수
 function addFruit()
 {
@@ -91,7 +94,7 @@ function addFruit()
 
         //현재 과일값 저장
         currentBody = body;
-        currentBody = fruits;
+        currentFruit = fruits;
 
         //월드에 배치
         World.add(world, body);
@@ -99,6 +102,10 @@ function addFruit()
 
 // 키보드 입력 받기
 window.onkeydown = (event) => {
+    
+    if(disableAction)
+        return;
+
     switch(event.code) {
         case "KeyA":
             Body.setPosition(currentBody, {
@@ -113,7 +120,14 @@ window.onkeydown = (event) => {
             })
             break;
         case "KeyS":
-            currentFruit.isSleeping = false
+            currentBody.isSleeping = false
+            //addFruit();
+            disableAction = true;
+            //지연시키는 함수
+            setTimeout(() => {
+                addFruit();
+                disableAction = false;
+            }, 1000);
             break;
     }
 }
